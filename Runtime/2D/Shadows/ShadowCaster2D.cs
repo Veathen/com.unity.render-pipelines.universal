@@ -82,23 +82,25 @@ namespace UnityEngine.Experimental.Rendering.Universal
         }
 
        private void Awake() {
-    if(m_ApplyToSortingLayers == null)
-        m_ApplyToSortingLayers = SetDefaultSortingLayers();
-    Bounds bounds = new Bounds(transform.position, Vector3.one);
+   	 if(m_ApplyToSortingLayers == null)
+   	     m_ApplyToSortingLayers = SetDefaultSortingLayers();
+  	  Bounds bounds = new Bounds(transform.position, Vector3.one);
 
-    Renderer renderer = GetComponent<Renderer>();
-    if (renderer != null)
-    {
-        bounds = renderer.bounds;
-    }
-else
-{
-	Collider2D collider = GetComponent<Collider2D>();
+ 	   Renderer renderer = GetComponent<Renderer>();
+  	  if (renderer != null)
+  	  {
+ 	       bounds = renderer.bounds;
+  	  }
+	else
+	{
+		Collider2D collider = GetComponent<Collider2D>();
 	if (collider != null)
 		if (collider.GetType() == typeof(PolygonCollider2D)) {
 			m_ShapePath = Array.ConvertAll<Vector2, Vector3>(((PolygonCollider2D)collider).GetPath(0), vec2To3);
 			m_UseRendererSilhouette = false;
-		} else {
+		} 
+		else 
+		{
 			bounds = collider.bounds;
 		}
 }
